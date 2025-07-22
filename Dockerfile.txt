@@ -1,0 +1,26 @@
+# Use the official Python image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install system dependencies required for OpenCV and dlib
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the requirements file into the container
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of your application code into the container
+COPY . .
+
+# Command to run your Flask application
+CMD ["gunicorn", "--bind", "0.0.0.0:7860", "--workers", "1", "app_realtime:app"]

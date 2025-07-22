@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Register Student</title>
+</head>
+<body>
+  <h1>Register New Student</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+    <label>Upload Photo:</label><br>
+    <input type="file" name="photo" accept="image/*" required><br><br>
+    <input type="submit" value="Register">
+  </form>
+  <br>
+  <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
+
